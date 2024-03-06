@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Thread thread = new Thread(new StopwatchThread());
+        Thread thread = new Thread(new StopwatchThread(new Stopwatch()));
         thread.start();
         Scanner scanner = new Scanner(System.in);
         if (scanner.next().length() != 0) thread.interrupt();
@@ -14,6 +14,13 @@ public class Main {
 }
 
 class StopwatchThread implements Runnable {
+
+    private final Stopwatch stopwatch;
+
+    public StopwatchThread(Stopwatch stopwatch) {
+        this.stopwatch = stopwatch;
+    }
+
     @Override
     public void run() {
         Stopwatch stopwatch = new Stopwatch();
